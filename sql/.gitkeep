@@ -1,0 +1,3 @@
+# Directorio para los scripts SQL del proyecto:
+# - 01_schema.sql (Tarea T07: creación de tablas, claves foráneas e índices)
+# - 02_seed.sql   (Tarea T09: datos ficticios de prueba para los 3 roles)
