@@ -62,7 +62,7 @@ workspace-it/
 - [ ] Desarrollo: base de datos, backend, frontend, pruebas y despliegue
 
 ## Documentación y seguimiento
-- **Tablero de seguimiento (GitHub Projects):** [WorkSpace IT — Plan de Ejecución](https://github.com/users/AdrianMartinezA/projects/1)
+- **Tablero de seguimiento (GitHub Projects):** [WorkSpace IT: Plan de Ejecución](https://github.com/users/AdrianMartinezA/projects/1)
 - La documentación técnica y de seguimiento está centralizada en la carpeta [`docs/`](./docs):
   - [Plan de ejecución (Fase 3)](./docs/plan_ejecucion.md)
   - [Plan de seguimiento y control e indicadores de calidad (Fase 4A)](./docs/plan_seguimiento_control.md)

@@ -1,52 +1,48 @@
-# Plan de Seguimiento y Control del Proyecto — WorkSpace IT (Fase 4A)
+# Plan de seguimiento y control: WorkSpace IT (Fase 4A)
 
-**Alumno:** Adrián Martínez Alarcón  
-**Ciclo:** 2.º CFGS Desarrollo de Aplicaciones Web (DAW) · **Curso:** 2026/2027
-
-Este documento recoge el procedimiento de seguimiento del trabajo, la lista de comprobación para dar una tarea por terminada y la tabla de indicadores de calidad aplicables durante el desarrollo de **WorkSpace IT**.
-
----
+**Alumno:** Adrián Martínez Alarcón · **Ciclo:** 2.º DAW · **Curso:** 2026/2027
 
 ## 1. Procedimiento de seguimiento del trabajo
 
-### 1.1. Frecuencia de revisión
-- **Al finalizar cada sesión de trabajo (2–4 veces por semana):** subida de cambios a la rama activa (`git push`), actualización de las casillas logradas dentro del Issue y movimiento de la tarjeta en **GitHub Projects** si cambia de estado.
-- **Revisión semanal (cada lunes):** contraste del tablero Kanban con el diagrama de Gantt (`docs/plan_ejecucion.md`), paso a la columna *Esta semana* de las tareas planificadas para los siguientes 7 días y ajuste de horas según el calendario de clase y exámenes.
-- **Revisión de cierre de hito (`H1` a `H6` y Entrega final):** comprobación de los indicadores de calidad del bloque, fusión de `develop` en `main` si todas las tareas del hito están en *Hecho*, y copia de seguridad completa (`.zip` + `mysqldump`) en OneDrive y Google Drive.
+### Frecuencia de revisión
+- **Al acabar cada sesión de trabajo**, de dos a cuatro por semana: subir los cambios a la rama de la tarea y mover su tarjeta si cambia de estado.
+- **Cada lunes:** comparar el tablero con el diagrama de Gantt, pasar a «Esta semana» las tareas de los siete días siguientes y ajustar la carga a las horas reales disponibles.
+- **Al cerrar cada hito:** comprobar que todas sus tareas están en «Hecho», revisar los indicadores asociados, fusionar `develop` en `main` y hacer la copia de seguridad completa.
 
-### 1.2. Estados de las tareas en el tablero Kanban
-1. **Pendiente:** tareas de bloques futuros planificadas en la Fase 3 que aún no han comenzado.
-2. **Esta semana:** tareas seleccionadas cada lunes según el cronograma para trabajar en la semana en curso.
-3. **En curso:** tareas en desarrollo activo en su rama `feature/TXX-descripcion` *(límite WIP: máximo 2 tareas simultáneas)*.
-4. **En revisión:** tareas cuyo entregable está terminado y pendiente de superar las pruebas locales (DBeaver, Postman, navegador) y la lista de comprobación.
-5. **Hecho:** tareas verificadas con su evidencia, subidas al repositorio y con su Issue cerrado.
+### Estados del tablero
+**Pendiente**, **Esta semana**, **En curso** con un máximo de dos tareas a la vez, **En revisión** y **Hecho**.
 
-### 1.3. Lista de comprobación para considerar terminada una tarea (*Definition of Done*)
+### Evidencias según el tipo de tarea
+- Base de datos: scripts ejecutados sin errores en una base limpia y consulta de solapamientos que solo devuelve filas cuando hay cruce.
+- Backend: capturas de Postman con una petición válida y varias erróneas con su código HTTP.
+- Frontend: vista sin errores en consola, validada en W3C y revisada en escritorio y móvil.
+- Diseño y documentación: archivo subido a `docs/` con su commit.
 
-Antes de mover cualquier tarjeta de **En revisión** a **Hecho**, verifico la siguiente lista de comprobación:
+### Actuación ante fallos o retrasos
+- Si una comprobación falla, la tarjeta vuelve a «En curso» y no se empieza ninguna tarea dependiente.
+- Si un problema bloquea más de una hora, se anota, se avanza otra tarea independiente y se retoma al día siguiente.
+- Si el retraso supera una semana o pone en riesgo un hito, se usa el margen de Navidad y, si no basta, se aplazan los elementos opcionales registrándolo en `registro_cambios.md`.
 
-- [ ] **1. Resultado verificable cumplido:** existe el entregable definido en la Tabla 1 de la Fase 3 y cumple su objetivo funcional.
-- [ ] **2. Código en el repositorio:** los cambios están subidos (`git push`) en su rama `feature/TXX-*` o fusionados en `develop` siguiendo *Conventional Commits* (`feat(TXX): ...`, `fix(TXX): ...`, `docs(TXX): ...`) y sin credenciales ni archivos `.env`.
-- [ ] **3. Comprobación específica según el tipo de tarea:**
-  - *Si es de base de datos (`T07`–`T09`):* el script SQL se ejecuta de principio a fin en MySQL/MariaDB sin errores y respeta las claves foráneas.
-  - *Si es de backend / API REST (`T10`–`T17`):* el endpoint se ha probado en **Postman** con al menos una petición válida (`200/201`) y una petición inválida o sin permisos (`400/401/403/409`), devolviendo siempre JSON válido.
-  - *Si es de frontend / integración (`T18`–`T25`):* la vista se visualiza sin desbordamientos en escritorio (`1920x1080`) y móvil (`390x844`), supera el validador W3C sin errores críticos y no arroja errores en la consola de Chrome DevTools.
-- [ ] **4. Sin errores críticos abiertos:** no queda ningún Issue con etiqueta `gravedad: critica` o `gravedad: alta` asociado a la tarea.
-- [ ] **5. Documentación actualizada:** si la tarea modifica una tabla, ruta JSON o decisión de diseño, se ha actualizado el documento correspondiente en `docs/`.
+### Lista de comprobación para considerar terminada una tarea
+- [ ] El entregable existe y cumple el resultado verificable de la Fase 3.
+- [ ] El código está en GitHub con un mensaje del tipo `feat(T15): ...` y sin credenciales ni `.env`.
+- [ ] Si es de base de datos, el script se ejecuta sin errores y respeta las claves foráneas.
+- [ ] Si es un endpoint, está probado en Postman con un caso válido y con casos erróneos o sin permisos.
+- [ ] Si es una vista, se adapta a escritorio y móvil, tiene sus etiquetas `label` y no muestra errores en consola.
+- [ ] No queda abierta ninguna incidencia crítica o alta relacionada.
+- [ ] La documentación de `docs/` afectada está actualizada.
 
----
+## 2. Indicadores de calidad
 
-## 2. Indicadores de calidad del proyecto
-
-| ID | Indicador | Qué aspecto controla | Cómo se comprobará | Resultado aceptable | Cuándo se comprueba |
-|---|---|---|---|---|---|
-| **IC-01** | **Ausencia de reservas solapadas** | Prevención de reservas incompatibles sobre el mismo puesto, sala o equipo en horarios cruzados. | Ejecutar la consulta SQL en DBeaver (`T08`) y enviar en Postman (`POST /api/reservas`) reservas con cruce total, parcial y envolvente sobre un recurso ya reservado. | El 100 % de los intentos solapados se rechaza con código `HTTP 409 Conflict` y mensaje JSON; 0 reservas solapadas en la tabla `reservas`. | Hito H3 (`T08`), Hito H4 (`T15`) y Bloque 8 (`T26`). |
-| **IC-02** | **Bloqueo de recursos en mantenimiento o averiados** | Que ningún empleado pueda reservar un recurso marcado por IT como `En mantenimiento` o `Averiado`. | Cambiar el estado de un recurso a mantenimiento (`T13`/`T21`), consultar `GET /api/disponibilidad` e intentar reservarlo por API. | El recurso no figura como disponible y cualquier petición directa de reserva es rechazada (`HTTP 400/409`). | Hito H4 (`T13`–`T15`) y Bloque 8 (`T26`). |
-| **IC-03** | **Cumplimiento de horarios, fechas y cupo** | Correcto funcionamiento de las validaciones de negocio (fechas pasadas, horario de oficina y límite de reservas activas). | Intentar crear reservas en fechas pasadas, con `hora_fin <= hora_inicio`, fuera del horario permitido o superando el cupo configurado por el Administrador. | 100 % de las solicitudes fuera de regla rechazadas en servidor (`HTTP 400/422`) y avisadas en el formulario cliente. | Hito H4 (`T15`, `T17`) y Bloque 8 (`T26`). |
-| **IC-04** | **Seguridad de acceso y control de roles (RBAC)** | Protección de contraseñas y restricción de rutas según el rol (`Empleado`, `Técnico IT`, `Administrador`). | Comprobar en MySQL que las claves usan hash `bcrypt` (`$2y$`) e intentar acceder con sesión de Empleado a endpoints y paneles de IT o Admin, y sin sesión. | 0 contraseñas en texto plano; respuestas `HTTP 401` sin sesión y `HTTP 403` en el 100 % de accesos a rutas de un rol superior. | Hito H4 (`T11`, `T12`) y Bloque 8 (`T27`). |
-| **IC-05** | **Validación de formularios y prevención SQLi / XSS** | Sanitización de entradas, campos obligatorios y protección frente a inyecciones en login, buscador y averías. | Enviar campos vacíos, cadenas `' OR 1=1 --` en login/filtros y `<script>alert(1)</script>` en la descripción de una avería (`T16`/`T20`). | Uso de consultas preparadas PDO en el 100 % de los modelos; rechazo de campos vacíos y escape del texto sin ejecución de scripts. | Hito H4 (`T10`–`T16`) y Bloque 8 (`T27`). |
-| **IC-06** | **Integridad referencial de la base de datos** | Coherencia de los datos entre `usuarios`, `roles`, `zonas`, `recursos`, `reservas` e `incidencias`. | Ejecutar `01_schema.sql` y `02_seed.sql` en una BD limpia y probar la baja lógica (`activo = 0`) de un recurso con reservas previas. | 0 errores SQL al importar scripts; claves foráneas (`FOREIGN KEY`) operativas y 0 registros huérfanos en el historial. | Hito H3 (`T07`, `T09`) y Hito H6 (`T29`). |
-| **IC-07** | **Adaptación a dispositivos móviles (Responsive)** | Visualización y manejo de las vistas tanto en ordenador como en teléfono móvil. | Revisar las 5 vistas (`T18`–`T22`) en Chrome DevTools a `1920x1080` y `390x844` px, y realizar una reserva completa desde un móvil real. | 0 desbordamientos horizontales, tablas y tarjetas adaptadas al ancho móvil y botones pulsables sin solaparse. | Bloque 6 (`T18`–`T22`) y Bloque 8 (`T28`). |
-| **IC-08** | **Accesibilidad, validez HTML y usabilidad** | Calidad del marcado HTML5/CSS3 y facilidad de comprensión para los usuarios finales. | Validar las vistas en W3C Validator, auditar etiquetas `<label>` y contraste en Lighthouse y pasar el cuestionario de evaluación a usuarios. | 0 errores críticos en W3C Validator, índice de accesibilidad ≥ 90 en Lighthouse y valoración media ≥ 4/5 en el cuestionario. | Bloque 6 (`T18`) y Bloque 8 (`T28`). |
-| **IC-09** | **Cobertura funcional y ausencia de fallos críticos** | Cumplimiento de las funcionalidades esenciales de la Fase 2 sin errores bloqueantes conocidos. | Revisar la matriz de requisitos (`docs/matriz_requisitos.md`), el registro de pruebas (`docs/registro_pruebas.md`) y los GitHub Issues abiertos. | 100 % de los requisitos esenciales con pruebas en estado `Superada` y 0 Issues abiertos de gravedad `Crítica` o `Alta`. | Hito H5 (`24/01/2027`) y Hito H6 (`03/02/2027`). |
-| **IC-10** | **Cumplimiento de hitos del cronograma** | Control del avance real de las 33 tareas respecto a las fechas de los hitos `H1`–`H6`. | Comparar en cada fecha de hito las tareas en la columna `Hecho` de GitHub Projects frente a lo planificado en el Gantt. | 100 % de las tareas esenciales del bloque completadas con una desviación máxima ≤ 3 días respecto al hito, cerrando antes del 12/02/2027. | En cada hito (`H1` a `H6`). |
+| Indicador | Qué controla | Cómo se comprueba | Resultado aceptable | Cuándo |
+|---|---|---|---|---|
+| IC-01 Reservas solapadas | Reservas incompatibles sobre un mismo recurso | Enviar en Postman reservas con cruce total, parcial y envolvente sobre un recurso ya reservado | Todas rechazadas con HTTP 409 y ninguna fila duplicada | H3, H4 y T26 |
+| IC-02 Recursos no operativos | Que no se reserve un recurso en mantenimiento o averiado | Marcar un recurso en mantenimiento, consultar disponibilidad y forzar su reserva | No aparece en el buscador y la API la rechaza | H4 y T26 |
+| IC-03 Reglas de reserva | Fechas pasadas, horario y cupo | Reservar en fecha pasada, con fin anterior al inicio, fuera de horario o superando el cupo | Todas rechazadas con HTTP 422 y aviso en el formulario | H4 y T26 |
+| IC-04 Acceso por roles | Que cada perfil acceda solo a sus rutas | Acceder sin sesión y con rol Empleado a rutas de Técnico IT y Administrador | HTTP 401 sin sesión y HTTP 403 en accesos cruzados | H4 y T27 |
+| IC-05 Credenciales y entradas | Contraseñas, inyección SQL y XSS | Revisar hashes y enviar campos vacíos, `' OR 1=1 --` y `<script>` | Hashes bcrypt, consultas preparadas y ningún script ejecutado | H4 y T27 |
+| IC-06 Integridad de datos | Coherencia entre tablas | Importar los scripts en una base limpia y dar de baja un recurso con historial | Cero errores SQL, claves foráneas activas e historial conservado | H3 y T29 |
+| IC-07 Adaptación a móvil | Uso en escritorio y teléfono | Revisar a 1920x1080 y 390x844 y reservar desde un móvil real | Sin scroll horizontal y botones utilizables | Bloque 6 y T28 |
+| IC-08 Accesibilidad y usabilidad | Marcado, contraste y comprensión | W3C, Lighthouse y cuestionario a usuarios | Sin errores críticos, accesibilidad mínima de 90 y media de 4 sobre 5 | T18 y T28 |
+| IC-09 Requisitos sin fallos críticos | Cobertura funcional | Revisar matriz de requisitos, registro de pruebas e Issues | Requisitos esenciales superados y ningún Issue crítico o alto abierto | H5 y H6 |
+| IC-10 Cumplimiento de hitos | Avance frente al Gantt | Comparar en cada hito las tarjetas en «Hecho» con lo planificado | Desviación máxima de tres días y cierre antes del 12/02/2027 | Cada hito |
