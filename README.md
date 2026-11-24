@@ -36,7 +36,8 @@ workspace-it/
 │   ├── decisiones_tecnicas.md       # Registro de decisiones técnicas
 │   ├── evaluacion_usuarios.md       # Procedimiento y cuestionario de evaluación con usuarios
 │   ├── matriz_requisitos.md         # Criterios de aceptación y cumplimiento de requisitos
-│   └── diagrama_gantt.png           # Cronograma y diagrama de Gantt del proyecto
+│   ├── diagrama_gantt.png           # Cronograma y diagrama de Gantt del proyecto
+│   └── tablero_kanban.png           # Vista del tablero Kanban en GitHub Projects
 ├── sql/                             # Scripts 01_schema.sql y 02_seed.sql
 └── src/                             # Código MVC (controllers, models, views, public)
 ```
